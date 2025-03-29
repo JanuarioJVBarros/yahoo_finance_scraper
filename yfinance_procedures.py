@@ -1,9 +1,4 @@
-import yfinance as yf
-
-def calculate_intrinsic_value_per_share(ticker_symbol: str, r: float, g: float) -> float: 
-    # Create a Ticker object
-    ticker = yf.Ticker(ticker_symbol)
-
+def calculate_intrinsic_value_per_share(ticker, r: float, g: float) -> float: 
     # Access the 'info' attribute for company data
     company_info = ticker.info
 
@@ -38,6 +33,9 @@ def calculate_intrinsic_value_per_share(ticker_symbol: str, r: float, g: float) 
     # Split the total Intrinsic Value per Outstanding Shares
     intrinsic_value_per_share = intrinsic_value / outstanding_shares
 
-    print(f"Intrinsic Value of {ticker_symbol}: ${intrinsic_value_per_share:.2f}")
+    print(f"Intrinsic Value: ${intrinsic_value_per_share:.2f}")
 
     return intrinsic_value_per_share
+
+def get_current_share_value(ticker: str):
+    return ticker.history(period="1d")["Close"].iloc[-1]
