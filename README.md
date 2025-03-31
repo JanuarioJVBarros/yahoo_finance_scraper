@@ -1,19 +1,18 @@
 # yahoo_finance_scraper
 
-## INTRINSIC VALUE
+## Intrinsic Value
 
 ### Intrinsic Value of a Stock: Understanding the DCF Model
 
 The intrinsic value of a stock represents its true worth based on fundamental analysis, rather than market price fluctuations. One of the most widely used methods to determine intrinsic value is the Discounted Cash Flow (DCF) Model.
 
-Formula for Intrinsic Value Using the DCF Model
 $$𝐼𝑉=∑𝐶𝐹𝑡(1+𝑟)𝑡+𝑇𝑉(1+𝑟)𝑛$$
  
 where:
 
 IV = Intrinsic Value
 
-𝐶𝐹𝑡= Expected future cash flow in year 
+𝐶𝐹𝑡 = Expected future cash flow in year 
 r = Discount rate (typically the Weighted Average Cost of Capital (WACC))
 t = Time period (years)
 TV = Terminal Value (estimated value of cash flows beyond the forecast period)
@@ -55,10 +54,13 @@ where:
 Net Income = Company's profit after expenses and taxes
 Shareholders' Equity = Total assets minus total liabilities
 
-Buffett's Criteria for a "Good" ROE
-✅ ROE consistently above 15% for at least 10 years
-✅ A steady or increasing trend (shows strong management and profitability)
-✅ Avoid companies with declining or erratic ROE
+Buffett's Criteria for a "Good" ROE:
+
+    ✅ ROE consistently above 15% for at least 10 years
+
+    ✅ A steady or increasing trend (shows strong management and profitability)
+
+    ✅ Avoid companies with declining or erratic ROE
 
 ## D/E
 ### Debt-to-Equity Ratio
