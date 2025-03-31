@@ -1,82 +1,80 @@
 # yahoo_finance_scraper
 
-# INTRINSIC VALUE
-The intrinsic value of a stock is an estimate of its true worth, based on fundamental analysis rather than market price fluctuations. There are several ways to calculate intrinsic value, but one of the most common methods is the Discounted Cash Flow (DCF) Model.
+## INTRINSIC VALUE
 
-Formula for Intrinsic Value using DCF Model:
-𝐼𝑉 = (∑𝐶𝐹𝑡 / ((1+𝑟)𝑡)) + (𝑇𝑉/(1+𝑟))
-​
+### Intrinsic Value of a Stock: Understanding the DCF Model
+
+The intrinsic value of a stock represents its true worth based on fundamental analysis, rather than market price fluctuations. One of the most widely used methods to determine intrinsic value is the Discounted Cash Flow (DCF) Model.
+
+Formula for Intrinsic Value Using the DCF Model
+$$𝐼𝑉=∑𝐶𝐹𝑡(1+𝑟)𝑡+𝑇𝑉(1+𝑟)𝑛$$
+ 
 where:
+
 IV = Intrinsic Value
 
-CFt= Expected future cash flows in year 
-r = Discount rate (usually Weighted Average Cost of Capital, WACC)
+𝐶𝐹𝑡= Expected future cash flow in year 
+r = Discount rate (typically the Weighted Average Cost of Capital (WACC))
 t = Time period (years)
-TV = Terminal Value (estimated value beyond the forecast period)
-𝑇𝑉 = (𝐹𝐶𝐹𝑛×(1+𝑔)) / (𝑟−𝑔)
-n = Number of years in the forecast period
+TV = Terminal Value (estimated value of cash flows beyond the forecast period)
 
-Steps to Calculate Intrinsic Value:
-Estimate Future Cash Flows – Use past financial data to project future free cash flows (FCF).
+The Terminal Value (TV) is calculated using the Gordon Growth Model:
 
-Determine the Discount Rate (r) – Typically the company's Weighted Average Cost of Capital (WACC).
-
-Calculate the Present Value (PV) of Cash Flows – Discount each year's expected cash flow to the present.
-​
-where 
-g is the growth rate of cash flows beyond the forecast period.
-Sum the Present Values – Add up the present values of all cash flows plus the present value of the terminal value.
-
-Example Calculation:
-Let’s assume:
-
-Projected Free Cash Flow for the next 3 years: $100M, $120M, $140M
-
-Discount rate (r) = 10%
-
-Growth rate (g) = 4%
+$$𝑇𝑉=𝐹𝐶𝐹𝑛×(1+𝑔)𝑟−𝑔$$
  
-After calculating, the Intrinsic Value is obtained.
+where:
 
-# ROE
-Understanding ROE
-Formula:
+𝐹𝐶𝐹𝑛 = Free Cash Flow in the final forecasted year
+g = Growth rate of cash flows beyond the forecast period
+r = Discount rate
+n = Number of forecasted years
 
-𝑅
-𝑂
-𝐸
-=
-Net Income
-Shareholder’s Equity
-ROE= 
-Shareholder’s Equity
-Net Income
-​
+### Steps to Calculate Intrinsic Value
+Estimate Future Cash Flows – Analyze past financial data to project future Free Cash Flows (FCF).
+
+Determine the Discount Rate (r) – Typically the company’s Weighted Average Cost of Capital (WACC) is used.
+
+Calculate the Present Value (PV) of Cash Flows – Discount each year's expected cash flow to its present value.
+
+Calculate the Terminal Value (TV) – Estimate the business's value beyond the forecast period using the Gordon Growth Model.
+
+Sum the Present Values – Add up the present values of all discounted cash flows plus the present value of the terminal value.
+
+Determine Intrinsic Value Per Share – Divide the total intrinsic value by the number of outstanding shares:
+
+𝐼𝑉per share = 𝐼𝑉 / Outstanding Shares
+
+## ROE
+### Return on Equity (ROE) Calculation
+ROE (Return on Equity) is a key metric Warren Buffett uses to evaluate a company's profitability and efficiency in generating returns for shareholders.
+
+$$𝑅𝑂𝐸 = (Net Income / Shareholders’ Equity) × 100$$
+
+where:
+
+Net Income = Company's profit after expenses and taxes
+Shareholders' Equity = Total assets minus total liabilities
+
+Buffett's Criteria for a "Good" ROE
+✅ ROE consistently above 15% for at least 10 years
+✅ A steady or increasing trend (shows strong management and profitability)
+✅ Avoid companies with declining or erratic ROE
+
+## D/E
+### Debt-to-Equity Ratio
+The Debt-to-Equity Ratio measures a company's financial leverage and how much debt it uses to finance its operations compared to shareholders' equity.
+
+$$𝐷/𝐸 = Total Debt / Shareholders’ Equity$$
  
-Ideal ROE: Buffett prefers companies with consistent ROE above 15% over at least 10 years.
+where:
 
-Why it Matters: A high ROE indicates a company is efficiently generating profits using its equity.
+Total Debt = Short-term debt + Long-term debt
+Shareholders' Equity = Total assets minus total liabilities
 
-# Debt-to-Equity Ratio
-Understanding Debt-to-Equity Ratio
-Formula:
-
-Debt-to-Equity
-=
-Total Debt
-Stockholders Equity
-Debt-to-Equity= 
-Stockholders Equity
-Total Debt
-​
- 
-Ideal Range: Buffett prefers companies with low or manageable debt, typically a Debt-to-Equity ratio below 0.5 (or 50%).
-
-Why It Matters:
-
-High debt can make a company vulnerable in economic downturns.
-
-A low ratio indicates financial stability and lower risk.
+Buffett's Criteria for a "Good" Debt-to-Equity Ratio
+✅ D/E < 0.5 → Safe Investment (Company relies more on equity than debt)
+⚠️ D/E between 0.5 - 1.0 → Moderate Risk (Debt is manageable but needs monitoring)
+❌ D/E > 1.0 → Risky, High Debt (Company is highly leveraged, a red flag for Buffett)
 
 
 # Profit Margins

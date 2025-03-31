@@ -9,7 +9,7 @@ DISCOUNT_RATE = 0.10 # in percentage (%)
 GROWTH_RATE = 0.05 # in percentage (%)
 
 # Define the ticker symbol
-ticker_symbol = "GME"
+ticker_symbol = "NVDA"
 
 # Create a Ticker object
 ticker = yf.Ticker(ticker_symbol)
@@ -23,12 +23,14 @@ print(f"Current Share Value: ${current_share_value:.2f}")
 #############################
 # Calculate Stock Intrinsic value per share
 intrincic_share_value = yfinance_procedures.calculate_intrinsic_value_per_share(ticker, r=DISCOUNT_RATE, g=GROWTH_RATE)
+
 print("\n🔎 Intrinsic Value Analysis:")
 print(f"Intrinsic Value: ${intrincic_share_value:.2f}")
+
 if (intrincic_share_value - current_share_value) > 0:
-    print("➡️ The stock appears to be **✅ undervalued**, meaning it may be a good buying opportunity based on intrinsic value.")
+    print("➡️ The stock appears to be **✅ UNDERVALUED**, meaning it may be a good buying opportunity based on intrinsic value.")
 else:
-    print("➡️ The stock appears to be **❌ overvalued**, suggesting it may be trading at a price higher than its calculated intrinsic value.")
+    print("➡️ The stock appears to be **❌ OVERVALUED**, suggesting it may be trading at a price higher than its calculated intrinsic value.")
 
 #############################
 ###          ROE          ###
