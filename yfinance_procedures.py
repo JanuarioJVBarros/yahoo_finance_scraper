@@ -1,19 +1,29 @@
-def calculate_intrinsic_value_per_share(ticker, r: float, g: float) -> float: 
+def calculate_intrinsic_value_per_share(ticker, r: float, g: float) -> float:
     # Access the 'info' attribute for company data
     company_info = ticker.info
 
     # Get the number of outstanding shares
     outstanding_shares = company_info.get('sharesOutstanding')
+    if outstanding_shares is None:
+        raise ValueError("Unable to retrieve sharesOutstanding.")
 
     # Fetch financial data
     cashflows = ticker.cashflow
 
-    # Extract Free Cash Flow (FCF)
-    fcf_values = cashflows.loc["Free Cash Flow"] - cashflows.loc["Capital Expenditure"]
+    # Extract Free Cash Flow (FCF) and Capital Expenditure
+    try:
+        fcf_values = cashflows.loc["Free Cash Flow"] - cashflows.loc["Capital Expenditure"]
+    except KeyError:
+        raise ValueError("Missing 'Free Cash Flow' or 'Capital Expenditure' in the cashflow data.")
+    
     fcf_values = fcf_values.sort_index(ascending=True)  # Sort in ascending order
 
     # It is possible that the fcf_values contain NaN values
     fcf_values = fcf_values.dropna()
+
+    # Check if there are enough data points for the forecast period
+    if len(fcf_values) < 1:
+        raise ValueError("Not enough historical data to forecast.")
 
     n = len(fcf_values)  # Forecast period (years)
     latest_fcf = fcf_values.iloc[-1]  # Most recent Free Cash Flow
@@ -33,7 +43,7 @@ def calculate_intrinsic_value_per_share(ticker, r: float, g: float) -> float:
     # Split the total Intrinsic Value per Outstanding Shares
     intrinsic_value_per_share = intrinsic_value / outstanding_shares
 
-    return intrinsic_value_per_share
+    return round(intrinsic_value_per_share, 2)
 
 def get_current_share_value(ticker):
     return ticker.history(period="1d")["Close"].iloc[-1]

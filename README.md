@@ -10,26 +10,26 @@ This function calculates the **intrinsic value per share** of a stock using the 
 The **intrinsic value** of a stock is calculated as the sum of the present value (PV) of the forecasted Free Cash Flows (FCF) and the **present value of the terminal value (TV)**.
 
 ### Terminal Value Calculation (using the Gordon Growth Model):
-\[
+```
 TV = \frac{{FCF_{\text{n}} \times (1 + g)}}{{r - g}}
-\]
+```
 Where:
 - \(FCF_{\text{n}}\) = Latest Free Cash Flow
 - \(g\) = Growth rate (annual rate at which Free Cash Flow grows indefinitely)
 - \(r\) = Discount rate (rate at which future cash flows are discounted)
 
 ### Present Value of Free Cash Flows (PV of FCFs):
-\[
+```
 PV_{\text{FCF}} = \sum_{t=1}^{n} \frac{{FCF_t}}{{(1 + r)^t}}
-\]
+```
 Where:
 - \(FCF_t\) = Free Cash Flow for year \(t\)
 - \(n\) = Forecast period (number of years of available Free Cash Flow)
 
 ### Intrinsic Value per Share:
-\[
+```
 \text{IV per Share} = \frac{{\text{PV}_{\text{FCF}} + \text{PV}_{\text{TV}}}}{{\text{Shares Outstanding}}}
-\]
+```
 Where:
 - \( \text{Shares Outstanding} \) = Total number of shares outstanding for the company.
 
@@ -272,14 +272,14 @@ print("Insider Ownership:", insider_ownership)
 The **Price-to-Earnings (PE) Ratio** is a widely used metric to assess a company's valuation relative to its earnings. This method calculates two types of PE ratios:
 
 1. **Trailing PE**: The PE ratio based on the company’s earnings over the past 12 months. It is calculated as:
-   \[
+   ```
    \text{Trailing PE} = \frac{\text{Current Price per Share}}{\text{Earnings per Share (EPS) over the past 12 months}}
-   \]
+   ```
 
 2. **Forward PE**: The PE ratio based on forecasted earnings for the next 12 months. It is calculated as:
-   \[
+   ```
    \text{Forward PE} = \frac{\text{Current Price per Share}}{\text{Estimated EPS for the next 12 months}}
-   \]
+   ```
 
 ### Parameters
 - `ticker`: The ticker symbol of the stock (using `yfinance` or `yahooquery`).

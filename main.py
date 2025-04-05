@@ -4,13 +4,16 @@ import openpyxl_procedures
 import yfinance as yf
 import yfinance_procedures
 
-DISCOUNT_RATE = 0.08 # in percentage (%)
-GROWTH_RATE = 0.03 # in percentage (%)
-
 # Set up argument parsing
 parser = argparse.ArgumentParser(description="Stock Ticker Script")
 
-# Define required argument for tickers
+# Define optional argument for discount rate
+parser.add_argument('--discount', type=float, required=True, help="Discount Rate")
+
+# Define optional argument for growth rate
+parser.add_argument('--growth', type=float, required=True, help="Growth Rate")
+
+# Define positional argument for tickers
 parser.add_argument('tickers', nargs='+', help="List of stock ticker symbols (e.g., AAPL, GOOGL)")
 
 # Parse the arguments
@@ -36,7 +39,7 @@ for ticker_symbol in args.tickers:
     ###    INTRINSIC VALUE    ###
     #############################
     # Calculate Stock Intrinsic value per share
-    intrincic_share_value = yfinance_procedures.calculate_intrinsic_value_per_share(ticker, r=DISCOUNT_RATE, g=GROWTH_RATE)
+    intrincic_share_value = yfinance_procedures.calculate_intrinsic_value_per_share(ticker, r=args.discount, g=args.growth)
 
     print("\n🔎 Intrinsic Value Analysis:")
     print(f"Intrinsic Value: ${intrincic_share_value:.2f}")
