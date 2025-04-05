@@ -1,176 +1,304 @@
 # yahoo_finance_scraper
+# Intrinsic Value per Share Calculation
 
-## Intrinsic Value
+## Overview
 
-### Intrinsic Value of a Stock: Understanding the DCF Model
+This function calculates the **intrinsic value per share** of a stock using the **Discounted Cash Flow (DCF)** model, which is a widely used method to estimate the value of a company. The calculation uses the company's **Free Cash Flow (FCF)**, **Capital Expenditure (CapEx)**, **discount rate (r)**, and **growth rate (g)** over a forecast period.
 
-The intrinsic value of a stock represents its true worth based on fundamental analysis, rather than market price fluctuations. One of the most widely used methods to determine intrinsic value is the Discounted Cash Flow (DCF) Model.
+## Formula
 
-$$𝐼𝑉=∑𝐶𝐹𝑡(1+𝑟)𝑡+𝑇𝑉(1+𝑟)𝑛$$
- 
-where:
+The **intrinsic value** of a stock is calculated as the sum of the present value (PV) of the forecasted Free Cash Flows (FCF) and the **present value of the terminal value (TV)**.
 
-IV = Intrinsic Value
-
-𝐶𝐹𝑡 = Expected future cash flow in year 
-r = Discount rate (typically the Weighted Average Cost of Capital (WACC))
-t = Time period (years)
-TV = Terminal Value (estimated value of cash flows beyond the forecast period)
-
-The Terminal Value (TV) is calculated using the Gordon Growth Model:
-
-$$𝑇𝑉=𝐹𝐶𝐹𝑛×(1+𝑔)𝑟−𝑔$$
- 
-where:
-
-𝐹𝐶𝐹𝑛 = Free Cash Flow in the final forecasted year
-g = Growth rate of cash flows beyond the forecast period
-r = Discount rate
-n = Number of forecasted years
-
-### Steps to Calculate Intrinsic Value
-Estimate Future Cash Flows – Analyze past financial data to project future Free Cash Flows (FCF).
-
-Determine the Discount Rate (r) – Typically the company’s Weighted Average Cost of Capital (WACC) is used.
-
-Calculate the Present Value (PV) of Cash Flows – Discount each year's expected cash flow to its present value.
-
-Calculate the Terminal Value (TV) – Estimate the business's value beyond the forecast period using the Gordon Growth Model.
-
-Sum the Present Values – Add up the present values of all discounted cash flows plus the present value of the terminal value.
-
-Determine Intrinsic Value Per Share – Divide the total intrinsic value by the number of outstanding shares:
-
-𝐼𝑉per share = 𝐼𝑉 / Outstanding Shares
-
-## ROE
-### Return on Equity (ROE) Calculation
-ROE (Return on Equity) is a key metric Warren Buffett uses to evaluate a company's profitability and efficiency in generating returns for shareholders.
-
-$$𝑅𝑂𝐸 = (Net Income / Shareholders’ Equity) × 100$$
-
-where:
-
-Net Income = Company's profit after expenses and taxes
-Shareholders' Equity = Total assets minus total liabilities
-
-Buffett's Criteria for a "Good" ROE:
-
-    ✅ ROE consistently above 15% for at least 10 years
-
-    ✅ A steady or increasing trend (shows strong management and profitability)
-
-    ✅ Avoid companies with declining or erratic ROE
-
-## D/E
-### Debt-to-Equity Ratio
-The Debt-to-Equity Ratio measures a company's financial leverage and how much debt it uses to finance its operations compared to shareholders' equity.
-
-$$𝐷/𝐸 = Total Debt / Shareholders’ Equity$$
- 
-where:
-
-Total Debt = Short-term debt + Long-term debt
-Shareholders' Equity = Total assets minus total liabilities
-
-Buffett's Criteria for a "Good" Debt-to-Equity Ratio
-✅ D/E < 0.5 → Safe Investment (Company relies more on equity than debt)
-⚠️ D/E between 0.5 - 1.0 → Moderate Risk (Debt is manageable but needs monitoring)
-❌ D/E > 1.0 → Risky, High Debt (Company is highly leveraged, a red flag for Buffett)
-
-
-# Profit Margins
-
-Understanding Profit Margins
-Buffett prefers companies with high and stable profit margins because they indicate:
-✅ Strong pricing power (customers willing to pay more)
-✅ Efficient cost management
-✅ Long-term competitive advantage
-
-There are two main profit margin types:
-
-1. Gross Profit Margin
-Formula:
-
-Gross Margin
-=
-Revenue
-−
-Cost of Goods Sold
-Revenue
-×
-100
-Gross Margin= 
-Revenue
-Revenue−Cost of Goods Sold
-​
- ×100
-Why it matters: Measures how efficiently a company produces its goods.
-
-Net Profit Margin (Most Important for Buffett)
-Formula:
-
-Net Margin
-=
-Net Income
-Revenue
-×
-100
-Net Margin= 
-Revenue
-Net Income
-​
- ×100
-Why it matters: Shows how much profit remains after all expenses, taxes, and debt payments.
-
-Buffett’s Benchmark: Stable or increasing Net Margin > 10% over several years.
-
-# MOAT 
-Identifying a Strong Moat
-A company has a moat if it shows:
-✅ High & stable Gross Margins (Pricing power & efficiency)
-✅ Consistent Revenue Growth (Demand for products/services)
-✅ High R&D Spending (if applicable) (Innovation & tech leadership)
-✅ Strong Brand Power (Not directly measurable, but can check P/E ratio vs. competitors)
-
-
-# Metrics to Evaluate Management (Quantitative)
-1. Free Cash Flow (FCF)
-Free Cash Flow is the cash a company generates after capital expenditures. It’s a good measure of whether the company is creating value for shareholders.
-
-Formula:
-
-FCF
-=
-Operating Cash Flow
-−
-Capital Expenditures
-FCF=Operating Cash Flow−Capital Expenditures
-2. Insider Ownership and Executive Compensation
-Insider Ownership: Buffett likes to see executives and directors owning a significant portion of the company’s stock because it aligns their interests with those of other shareholders.
-
-# POE
-PE Ratio (Price-to-Earnings Ratio)
-The Price-to-Earnings Ratio (PE Ratio) is one of the most commonly used metrics to evaluate whether a stock is overvalued or undervalued. It’s a simple way to compare the market price of a company's stock to its earnings.
-
-How the PE Ratio is Calculated:
-𝑃
-𝐸
- 
-𝑅
-𝑎
-𝑡
-𝑖
-𝑜
-=
-Stock Price
-Earnings Per Share (EPS)
-PE Ratio= 
-Earnings Per Share (EPS)
-Stock Price
-​
- 
+### Terminal Value Calculation (using the Gordon Growth Model):
+\[
+TV = \frac{{FCF_{\text{n}} \times (1 + g)}}{{r - g}}
+\]
 Where:
+- \(FCF_{\text{n}}\) = Latest Free Cash Flow
+- \(g\) = Growth rate (annual rate at which Free Cash Flow grows indefinitely)
+- \(r\) = Discount rate (rate at which future cash flows are discounted)
 
-Stock Price: The current price of one share of the company.
+### Present Value of Free Cash Flows (PV of FCFs):
+\[
+PV_{\text{FCF}} = \sum_{t=1}^{n} \frac{{FCF_t}}{{(1 + r)^t}}
+\]
+Where:
+- \(FCF_t\) = Free Cash Flow for year \(t\)
+- \(n\) = Forecast period (number of years of available Free Cash Flow)
 
+### Intrinsic Value per Share:
+\[
+\text{IV per Share} = \frac{{\text{PV}_{\text{FCF}} + \text{PV}_{\text{TV}}}}{{\text{Shares Outstanding}}}
+\]
+Where:
+- \( \text{Shares Outstanding} \) = Total number of shares outstanding for the company.
+
+## Parameters
+
+The function `calculate_intrinsic_value_per_share()` accepts the following parameters:
+
+- **ticker (str or yfinance.Ticker)**: The stock ticker symbol (e.g., "AAPL" for Apple, "GOOGL" for Google) or a `yfinance.Ticker` object.
+- **r (float)**: The **discount rate** (default is 0.08 or 8%).
+- **g (float)**: The **growth rate** (default is 0.03 or 3%).
+
+Both the discount rate (`r`) and growth rate (`g`) are expressed as decimal values (e.g., 8% as 0.08).
+
+## Example Usage
+
+```python
+import yfinance as yf
+import yfinance_procedures
+
+# Get the Ticker object for Apple
+ticker = yf.Ticker("AAPL")
+
+# Calculate intrinsic value per share
+intrinsic_value = yfinance_procedures.calculate_intrinsic_value_per_share(ticker, r=0.08, g=0.03)
+
+# Print the result
+print(f"Intrinsic Value per Share: {intrinsic_value}")
+```
+
+## Return on Equity (ROE) Calculation
+
+### Description
+The **Return on Equity (ROE)** is a financial ratio that measures the profitability of a company in relation to the equity held by its shareholders. It is calculated by dividing the company's **Net Income** by its **Shareholder's Equity** for a given year. The result is expressed as a percentage.
+
+### Formula
+The formula used to calculate ROE is:
+
+ROE = (Net Income / Shareholder's Equity) * 100
+
+
+Where:
+- **Net Income** is the total profit earned by the company after expenses, taxes, and costs.
+- **Shareholder's Equity** represents the value of a company's assets that shareholders own after liabilities are subtracted.
+
+### Calculation Steps
+1. **Extract Financial Data**: Retrieve the **Net Income** and **Shareholder's Equity** from the company's income statement and balance sheet, respectively.
+2. **Remove NaN Values**: Drop any missing (NaN) values from both **Net Income** and **Shareholder's Equity** to ensure accurate calculations.
+3. **Calculate ROE**: For each year, calculate the ROE as `Net Income / Shareholder's Equity` and multiply by 100 to convert it to a percentage.
+4. **Return Results**: The ROE for each year is returned in a dictionary where the keys are the years and the values are the ROE percentages.
+
+### Usage Example
+
+```python
+import yfinance as yf
+import yfinance_procedures
+
+# Get ticker symbol (e.g., AAPL)
+ticker = yf.Ticker('AAPL')
+
+# Calculate ROE
+roe = yfinance_procedures.get_roe(ticker)
+
+# Print ROE values for the years
+print(roe)
+```
+
+## Debt-to-Equity Ratio Calculation
+
+### Description
+The **Debt-to-Equity Ratio** (D/E) is a financial ratio that compares a company's total debt to its shareholder equity. It is used to evaluate a company's financial leverage and how much debt the company is using to finance its operations relative to its equity. A high D/E ratio indicates that the company may be over-leveraged, while a low ratio suggests a more conservative financial structure.
+
+### Formula
+The formula used to calculate the Debt-to-Equity ratio is:
+
+Debt-to-Equity Ratio = Total Debt / Shareholder's Equity
+
+Where:
+- **Total Debt** represents the sum of the company's liabilities, including both short-term and long-term debt.
+- **Shareholder's Equity** is the net assets available to shareholders after liabilities have been deducted.
+
+### Calculation Steps
+1. **Extract Balance Sheet Data**: Retrieve the **Total Debt** and **Shareholder's Equity** from the company's balance sheet.
+2. **Remove NaN Values**: Drop any missing (NaN) values from both **Total Debt** and **Shareholder's Equity** to ensure accurate calculations.
+3. **Calculate Debt-to-Equity**: For each year, calculate the D/E ratio as `Total Debt / Shareholder's Equity`.
+4. **Return Results**: The D/E ratio for each year is returned in a dictionary where the keys are the years and the values are the D/E ratios.
+
+### Example Code
+```python
+import yfinance as yf
+import yfinance_procedures
+
+# Get ticker symbol (e.g., AAPL)
+ticker = yf.Ticker('AAPL')
+
+# Calculate Debt-to-Equity Ratio
+debt_to_equity = yfinance_procedures.get_debt_to_equity(ticker)
+
+# Print Debt-to-Equity ratios for the years
+print(debt_to_equity)
+```
+
+## Profit Margins Calculation
+
+### Description
+The **Profit Margin** is a financial ratio that shows the percentage of revenue that remains as profit after all expenses are subtracted. It's an important indicator of a company's financial health, showing how efficiently a company is able to convert revenue into profits. There are various types of profit margins, but in this case, we are calculating the **Net Profit Margin**, which measures how much of each dollar of revenue is profit.
+
+### Formula
+The formula used to calculate **Net Profit Margin** is:
+
+Net Profit Margin = (Net Income / Total Revenue) * 100
+
+
+Where:
+- **Net Income** is the company's total profit after all expenses have been deducted from total revenue.
+- **Total Revenue** is the total amount of money the company has earned during a period from its business activities.
+
+### Calculation Steps
+1. **Extract Financial Data**: Retrieve the **Total Revenue** and **Net Income** from the company's income statement.
+2. **Remove NaN Values**: Drop any missing (NaN) values from both **Total Revenue** and **Net Income** to ensure accurate calculations.
+3. **Calculate Profit Margins**: For each year, calculate the Net Profit Margin as `(Net Income / Total Revenue) * 100`.
+4. **Return Results**: The profit margins for each year are returned in a dictionary where the keys are the years and the values are the net profit margins.
+
+### Usage Example
+
+```python
+import yfinance as yf
+import yfinance_procedures
+
+# Get ticker symbol (e.g., AAPL)
+ticker = yf.Ticker('AAPL')
+
+# Calculate Profit Margins
+profit_margins = yfinance_procedures.get_profit_margins(ticker)
+
+# Print Profit Margins for the years
+print(profit_margins)
+```
+
+## Moat Analysis Calculation
+
+### Description
+A company's "moat" refers to its competitive advantage that allows it to maintain a sustainable market position over time. The following metrics are commonly used to assess a company's moat:
+
+1. **Gross Margin**: A company with high and stable gross margins is often seen as having a strong moat, as it indicates pricing power and efficiency.
+2. **Revenue Growth Rate**: Consistent revenue growth is another sign of a company with a strong competitive advantage.
+3. **R&D as a Percentage of Revenue**: Companies investing heavily in research and development (R&D) may have a long-term competitive advantage due to innovation.
+
+This function calculates these three metrics to help analyze a company's moat.
+
+### Metrics Calculated
+1. **Gross Margin**: Measures how much of each dollar of revenue is left over after subtracting the cost of goods sold (COGS).
+    ```
+    Gross Margin = (Gross Profit / Total Revenue) * 100
+    ```
+
+2. **Revenue Growth Rate**: Measures how the company's revenue is growing over time.
+    ```
+    Revenue Growth Rate = ((Revenue in Current Year - Revenue in Previous Year) / Revenue in Previous Year) * 100
+    ```
+
+3. **R&D as a Percentage of Revenue**: Measures the proportion of revenue spent on research and development.
+    ```
+    R&D as % of Revenue = (R&D Expenses / Total Revenue) * 100
+    ```
+
+### Calculation Steps
+1. **Extract Financial Data**: Retrieve **Total Revenue**, **Gross Profit**, and **Research and Development** expenses from the company's financials.
+2. **Calculate Gross Margin**: For each year, calculate **Gross Margin** as `(Gross Profit / Total Revenue) * 100`.
+3. **Calculate Revenue Growth**: For each year, calculate the growth rate in revenue compared to the previous year.
+4. **Calculate R&D as a Percentage of Revenue**: For each year, calculate the percentage of revenue spent on **Research and Development**.
+5. **Return Results**: The function returns three dictionaries:
+    - **Gross Margins** for each year.
+    - **Revenue Growth** for each year.
+    - **R&D as % of Revenue** for each year (if applicable).
+
+### Usage Example
+
+```python
+import yfinance as yf
+import yfinance_procedures
+
+# Get ticker symbol (e.g., AAPL)
+ticker = yf.Ticker('AAPL')
+
+# Analyze Moat
+gross_margins, revenue_growth, r_and_d_percent = yfinance_procedures.analyze_moat(ticker)
+
+# Print results
+print("Gross Margins:", gross_margins)
+print("Revenue Growth:", revenue_growth)
+print("R&D as % of Revenue:", r_and_d_percent)
+```
+
+## Management Evaluation Calculation
+
+### Description
+The evaluation of a company's management can be done by assessing two key aspects:
+
+1. **Free Cash Flow (FCF)**: Free Cash Flow is a critical metric to understand how efficiently a company generates cash after spending money to maintain or expand its asset base. It's a measure of a company's ability to generate additional value.
+2. **Insider Ownership**: The percentage of a company's shares owned by its insiders (e.g., executives, directors) can indicate the level of confidence the management has in the company's future.
+
+This function calculates **Free Cash Flow** and retrieves **Insider Ownership** (if available) for a given ticker symbol.
+
+### Metrics Calculated
+1. **Free Cash Flow (FCF)**: Measures the cash available to investors after capital expenditures are deducted from operating cash flow.
+    ```
+    FCF = Operating Cash Flow - Capital Expenditures
+    ```
+
+2. **Insider Ownership**: The percentage of the company's stock owned by insiders (e.g., executives, directors).
+
+### Calculation Steps
+1. **Extract Financial Data**: Retrieve **Operating Cash Flow** and **Capital Expenditures** from the company's cash flow statement.
+2. **Calculate Free Cash Flow (FCF)**: For each year, calculate **FCF** as `(Operating Cash Flow - Capital Expenditures)`.
+3. **Retrieve Insider Ownership**: Fetch the percentage of shares held by company insiders, if available.
+4. **Return Results**: The function returns two values:
+    - A dictionary of **Free Cash Flow (FCF)** for each year.
+    - The **Insider Ownership percentage** (if available).
+
+### Usage Example
+
+```python
+import yfinance as yf
+import yfinance_procedures
+
+# Get ticker symbol (e.g., AAPL)
+ticker = yf.Ticker('AAPL')
+
+# Evaluate Management
+free_cash_flow, insider_ownership = yfinance_procedures.evaluate_management(ticker)
+
+# Print results
+print("Free Cash Flow:", free_cash_flow)
+print("Insider Ownership:", insider_ownership)
+```
+
+## PE Ratio Analysis
+
+### Description
+The **Price-to-Earnings (PE) Ratio** is a widely used metric to assess a company's valuation relative to its earnings. This method calculates two types of PE ratios:
+
+1. **Trailing PE**: The PE ratio based on the company’s earnings over the past 12 months. It is calculated as:
+   \[
+   \text{Trailing PE} = \frac{\text{Current Price per Share}}{\text{Earnings per Share (EPS) over the past 12 months}}
+   \]
+
+2. **Forward PE**: The PE ratio based on forecasted earnings for the next 12 months. It is calculated as:
+   \[
+   \text{Forward PE} = \frac{\text{Current Price per Share}}{\text{Estimated EPS for the next 12 months}}
+   \]
+
+### Parameters
+- `ticker`: The ticker symbol of the stock (using `yfinance` or `yahooquery`).
+
+### Returns
+- **trailing_pe**: The trailing PE ratio of the stock (or `'N/A'` if data is unavailable).
+- **forward_pe**: The forward PE ratio of the stock (or `'N/A'` if data is unavailable).
+
+### Usage example
+```python
+import yfinance as yf
+import yfinance_procedures
+
+# Get ticker symbol (e.g., AAPL)
+ticker = yf.Ticker('AAPL')
+
+# Example usage of the function:
+trailing_pe, forward_pe = yfinance_procedures.get_pe_analysis(ticker)
+
+print("Trailing PE:", trailing_pe)
+print("Forward PE:", forward_pe)
+```

@@ -4,8 +4,8 @@ import openpyxl_procedures
 import yfinance as yf
 import yfinance_procedures
 
-DISCOUNT_RATE = 0.10 # in percentage (%)
-GROWTH_RATE = 0.05 # in percentage (%)
+DISCOUNT_RATE = 0.08 # in percentage (%)
+GROWTH_RATE = 0.03 # in percentage (%)
 
 # Set up argument parsing
 parser = argparse.ArgumentParser(description="Stock Ticker Script")
@@ -45,17 +45,17 @@ for ticker_symbol in args.tickers:
         intrincic_share_analysis = "➡️ The stock appears to be **✅ UNDERVALUED**, meaning it may be a good buying opportunity based on intrinsic value."
     else:
         intrincic_share_analysis = "➡️ The stock appears to be **❌ OVERVALUED**, suggesting it may be trading at a price higher than its calculated intrinsic value."
-    row_list.append(["Intrinsic Value", round(current_share_value, 2), intrincic_share_value, intrincic_share_analysis])
+    row_list.append(["Intrinsic Value", round(current_share_value, 2), round(intrincic_share_value, 2), intrincic_share_analysis])
 
     #############################
     ###          ROE          ###
     #############################
     roe_data = yfinance_procedures.get_roe(ticker)
     print("\n🔎 Return on Equity (ROE) Analysis:")
+    row_list.append([f"Return on Equity (ROE)"])
     for year, roe in roe_data.items():
         status = "✅ Strong (Above 15%)" if roe > 15 else "⚠️ Below Ideal (Under 15%)"
         print(f"{year}: ROE = {roe:.2f}% {status}")
-        row_list.append([f"Return on Equity (ROE)"])
         row_list.append([f"Return on Equity (ROE) {year}", round(roe, 2), "> 15%", status])
 
     #############################
@@ -63,6 +63,7 @@ for ticker_symbol in args.tickers:
     #############################
     debt_to_equity_data = yfinance_procedures.get_debt_to_equity(ticker)
     print("\n🔎 Debt-to-Equity Analysis:")
+    row_list.append(["Debt-to-Equity"])
     for year, ratio in debt_to_equity_data.items():
         if ratio < 0.5:
             status = "✅ Low Debt (Safe Investment)"
@@ -71,7 +72,6 @@ for ticker_symbol in args.tickers:
         else:
             status = "❌ High Debt (Risky)"
         print(f"{year}: Debt-to-Equity = {ratio:.2f} {status}")
-        row_list.append(["Debt-to-Equity"])
         row_list.append([f"Debt-to-Equity {year}", round(ratio, 2), "< 0,5", status])
 
     #############################
@@ -79,10 +79,10 @@ for ticker_symbol in args.tickers:
     #############################
     profit_margin_data = yfinance_procedures.get_profit_margins(ticker)
     print("\n🔎 Profit Margin Analysis:")
+    row_list.append(["Profit Margin"])
     for year, margin in profit_margin_data.items():
         status = "✅ Strong (>10%)" if margin > 10 else "⚠️ Weak (<10%)"
         print(f"{year}: Net Profit Margin = {margin:.2f}% {status}")
-        row_list.append(["Profit Margin"])
         row_list.append([f"Profit Margin {year}", round(margin, 2), "> 10%", status])
 
     #############################
