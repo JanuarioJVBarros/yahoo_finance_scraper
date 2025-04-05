@@ -1,5 +1,3 @@
-import yfinance as yf
-
 def calculate_intrinsic_value_per_share(ticker, r: float, g: float) -> float:
     # Access the 'info' attribute for company data
     company_info = ticker.info
